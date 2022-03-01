@@ -2,7 +2,7 @@
 //走行前、エンコーダの数字をpcに書き出すプログラム
 
 #include "mbed.h"
-#include "EC.h"
+#include "EC.h" //Kenshinです
 #include "CalPID.h"
 #include "MotorController.h"
 

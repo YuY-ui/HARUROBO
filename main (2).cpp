@@ -2,7 +2,7 @@
 //走行前、エンコーダの数字をpcに書き出すプログラム
 
 #include "mbed.h"
-#include "EC.h" //Kenshinです
+#include "EC.h"
 #include "CalPID.h"
 #include "MotorController.h"
 
@@ -12,7 +12,7 @@ Ticker ticker;
 
 //*****************************************************************************
 //足回りモータに関する設定　suzaku775/24V
-#define RESOLUTION 500     //エンコーダの分解能　データシート参照 >>48でいいかどうかは確認する
+#define RESOLUTION 2048     //エンコーダの分解能　データシート参照 >>48でいいかどうかは確認する//Kenshinです
 #define DELTA_T 0.001     //pidの幅Δt
 #define DUTY_MAX 0.5      //duty上限
 #define OMEGA_MAX 6       //ω上限

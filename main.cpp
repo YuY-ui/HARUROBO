@@ -96,16 +96,39 @@ void saveAngle()
         M1_angle_saved[angle_count] = M1_MC.getAngle();
         M1_angle_count++;
     }
+    if(M2_angle_count<NUM_DATA) {
+        M2_angle_saved[angle_count] = M2_MC.getAngle();
+        M2_angle_count++;
+    }
+    if(M3_angle_count<NUM_DATA) {
+        M3_angle_saved[angle_count] = M3_MC.getAngle();
+        M3_angle_count++;
+    }
+    if(M4_angle_count<NUM_DATA) {
+        M4_angle_saved[angle_count] = M4_MC.getAngle();
+        M4_angle_count++;
+    }         //kenshin
 }
-
 //角速度を保存する変数と関数
 float M1_omega_saved[NUM_DATA]= {};
 int M1_omega_count=0;
 void saveOmega()//
 {
     if(M1_omega_count<NUM_DATA) {
-        M1_omega_saved[omega_count]=ec.getOmega();
+        M1_omega_saved[omega_count]=M1_EC.getOmega();
         M1_omega_count++;
+    }
+       if(M2_omega_count<NUM_DATA) {
+        M2_omega_saved[omega_count]=M2_EC.getOmega();
+        M2_omega_count++;
+    }
+       if(M3_omega_count<NUM_DATA) {
+        M3_omega_saved[omega_count]=M3_EC.getOmega();
+        M3_omega_count++;
+    }
+       if(M4_omega_count<NUM_DATA) {
+        M4_omega_saved[omega_count]=M4_EC.getOmega();
+        M4_omega_count++;
     }
 }
 //
@@ -114,7 +137,10 @@ int save_count;//データ保存の周期調整用1kHzで保存すると1秒で1
 #define SAVE_COUNT_THRESHOLD 10
 void speedControll()
 {
-    motor.Sc(target_speed);
+    M1_MC.Sc(target_speed);
+    M2_MC.Sc(target_speed);
+    M3_MC.Sc(target_speed);
+    M4_MC.Sc(target_speed);
     save_count++;
     if(save_count>SAVE_COUNT_THRESHOLD) {
         saveAngle();
@@ -124,7 +150,6 @@ void speedControll()
 }
     
     
-}
 
 
 //********************************ここの後ろは理解した
@@ -135,9 +160,23 @@ int main(){
     while(1){
         countM1 = M1_EC.getCount();
         omegaM1 = M1_EC.getOmega();
-        pc.printf("%d, ",count);
-        pc.printf("%lf\n",omega);
+        pc.printf("%d, ",countM1);
+        pc.printf("%lf\n",omegaM1);
+        
+        countM2 = M2_EC.getCount();
+        omegaM2 = M2_EC.getOmega();
+        pc.printf("%d, ",countM2);
+        pc.printf("%lf\n",omegaM2);
+        countM3 = M3_EC.getCount();
+        omegaM3 = M3_EC.getOmega();
+        pc.printf("%d, ",countM3);
+        pc.printf("%lf\n",omegaM3);
+        countM4 = M4_EC.getCount();
+        omegaM4 = M4_EC.getOmega();
+        pc.printf("%d, ",countM4);
+        pc.printf("%lf\n",omegaM4);
         wait(1);
+        
     }
     
 
